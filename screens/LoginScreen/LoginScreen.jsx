@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  ImageBackground,
-  View,
-  TouchableOpacity,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import { useState } from "react";
 
 export const LoginScreen = ({ changeScreen }) => {
