@@ -58,6 +58,10 @@ export const RegistrationScreen = ({ changeScreen }) => {
       return alert("Fill in all the fields please!");
     }
     console.log(`Login: ${login}, Email: ${email}, Password: ${password}`);
+
+    setEmail("");
+    setLogin("");
+    setPassword("");
   };
 
   return (
