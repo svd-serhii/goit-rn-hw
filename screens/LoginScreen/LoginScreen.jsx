@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import { useState } from "react";
 
-export const LoginScreen = ({ changeScreen }) => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -21,53 +21,70 @@ export const LoginScreen = ({ changeScreen }) => {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
-      <View style={{ ...styles.container, height: 489 }}>
-        <View style={{ ...styles.form, paddingTop: 32 }}>
-          <Text style={styles.title}>Login</Text>
+    <View style={styles.container}>
+      <ImageBackground source={require("../../assets/images/bg_mount.jpg")} style={styles.backgroundImg}>
+        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+          <View style={{ ...styles.loginContainer, height: 489 }}>
+            <View style={{ ...styles.form, paddingTop: 32 }}>
+              <Text style={styles.title}>Login</Text>
 
-          <View style={{ marginTop: 32 }}>
-            <TextInput
-              style={styles.input}
-              placeholder="Email address"
-              inputMode="email"
-              value={email}
-              onChangeText={handleEmail}
-            />
+              <View style={{ marginTop: 32 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email address"
+                  inputMode="email"
+                  value={email}
+                  onChangeText={handleEmail}
+                />
+              </View>
+              <View style={{ marginTop: 16 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  secureTextEntry={isPasswordShown ? false : true}
+                  value={password}
+                  onChangeText={handlePassword}
+                />
+              </View>
+
+              <TouchableOpacity
+                style={styles.showPassBtn}
+                activeOpacity={0.5}
+                onPress={() => setIsPasswordShown((prevState) => !prevState)}
+              >
+                <Text style={styles.showPassBtnText}>{isPasswordShown ? "Hide" : "Show"}</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.btnForm} activeOpacity={0.5} onPress={onSubmit}>
+                <Text style={styles.btnFormText}>Login</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.loginLink}
+                activeOpacity={0.5}
+                onPress={() => navigation.navigate("Registration")}
+              >
+                <Text style={styles.loginLinkText}>Don't have an account? Register</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={{ marginTop: 16 }}>
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              secureTextEntry={isPasswordShown ? false : true}
-              value={password}
-              onChangeText={handlePassword}
-            />
-          </View>
-
-          <TouchableOpacity
-            style={styles.showPassBtn}
-            activeOpacity={0.5}
-            onPress={() => setIsPasswordShown((prevState) => !prevState)}
-          >
-            <Text style={styles.showPassBtnText}>{isPasswordShown ? "Hide" : "Show"}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.btnForm} activeOpacity={0.5} onPress={onSubmit}>
-            <Text style={styles.btnFormText}>Login</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.loginLink} activeOpacity={0.5} onPress={() => changeScreen(false)}>
-            <Text style={styles.loginLinkText}>Don't have an account? Register</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: "center",
+  },
+  backgroundImg: {
+    flex: 1,
+    justifyContent: "flex-end",
+    width: "100%",
+  },
+  loginContainer: {
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     width: "100%",

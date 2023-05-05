@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 
-export const RegistrationScreen = ({ changeScreen }) => {
+export const RegistrationScreen = ({ navigation }) => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -65,83 +65,103 @@ export const RegistrationScreen = ({ changeScreen }) => {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
-      <View style={{ ...styles.container, height: 549 }}>
-        <View style={styles.form}>
-          <View style={styles.photoContainer}>
-            <Image source={{ uri: image }} style={styles.userPhoto} />
-            {image ? (
+    <View style={styles.container}>
+      <ImageBackground source={require("../../assets/images/bg_mount.jpg")} style={styles.backgroundImg}>
+        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+          <View style={{ ...styles.LoginContainer, height: 549 }}>
+            <View style={styles.form}>
+              <View style={styles.photoContainer}>
+                <Image source={{ uri: image }} style={styles.userPhoto} />
+                {image ? (
+                  <TouchableOpacity
+                    style={{
+                      ...styles.addButton,
+                      borderColor: "#E8E8E8",
+                    }}
+                    activeOpacity={0.7}
+                    onPress={removeUserImage}
+                  >
+                    <Image
+                      source={require("../../assets/images/removeUserImg.png")}
+                      style={styles.addUserPhotoBtnImg}
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity style={styles.addButton} activeOpacity={0.7} onPress={addUserImage}>
+                    <Image source={require("../../assets/images/addUserImg.png")} style={styles.addUserPhotoBtnImg} />
+                  </TouchableOpacity>
+                )}
+              </View>
+
+              <Text style={styles.title}>Registration</Text>
+              <View style={{ marginTop: 30 }}>
+                <View>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Login"
+                    inputMode="text"
+                    value={login}
+                    onChangeText={handleLogin}
+                  />
+                </View>
+                <View style={{ marginTop: 16 }}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email address"
+                    inputMode="email"
+                    value={email}
+                    onChangeText={handleEmail}
+                  />
+                </View>
+
+                <View style={{ marginTop: 16, position: "relative" }}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    secureTextEntry={isPasswordShown ? false : true}
+                    value={password}
+                    onChangeText={handlePassword}
+                  />
+                </View>
+              </View>
               <TouchableOpacity
-                style={{
-                  ...styles.addButton,
-                  borderColor: "#E8E8E8",
-                }}
-                activeOpacity={0.7}
-                onPress={removeUserImage}
+                style={styles.showPassBtn}
+                activeOpacity={0.5}
+                onPress={() => setIsPasswordShown((prevState) => !prevState)}
               >
-                <Image source={require("../../assets/images/removeUserImg.png")} style={styles.addUserPhotoBtnImg} />
+                <Text style={styles.showPassBtnText}>{isPasswordShown ? "Hide" : "Show"}</Text>
               </TouchableOpacity>
-            ) : (
-              <TouchableOpacity style={styles.addButton} activeOpacity={0.7} onPress={addUserImage}>
-                <Image source={require("../../assets/images/addUserImg.png")} style={styles.addUserPhotoBtnImg} />
+
+              <TouchableOpacity style={styles.btnForm} activeOpacity={0.5} onPress={onSubmit}>
+                <Text style={styles.btnFormText}>Register</Text>
               </TouchableOpacity>
-            )}
-          </View>
 
-          <Text style={styles.title}>Registration</Text>
-          <View style={{ marginTop: 30 }}>
-            <View>
-              <TextInput
-                style={styles.input}
-                placeholder="Login"
-                inputMode="text"
-                value={login}
-                onChangeText={handleLogin}
-              />
-            </View>
-            <View style={{ marginTop: 16 }}>
-              <TextInput
-                style={styles.input}
-                placeholder="Email address"
-                inputMode="email"
-                value={email}
-                onChangeText={handleEmail}
-              />
-            </View>
-
-            <View style={{ marginTop: 16, position: "relative" }}>
-              <TextInput
-                style={styles.input}
-                placeholder="Password"
-                secureTextEntry={isPasswordShown ? false : true}
-                value={password}
-                onChangeText={handlePassword}
-              />
+              <TouchableOpacity
+                style={styles.loginLink}
+                activeOpacity={0.5}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Text style={styles.loginLinkText}>Already have an account? Log in</Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity
-            style={styles.showPassBtn}
-            activeOpacity={0.5}
-            onPress={() => setIsPasswordShown((prevState) => !prevState)}
-          >
-            <Text style={styles.showPassBtnText}>{isPasswordShown ? "Hide" : "Show"}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.btnForm} activeOpacity={0.5} onPress={onSubmit}>
-            <Text style={styles.btnFormText}>Register</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.loginLink} activeOpacity={0.5} onPress={() => changeScreen(true)}>
-            <Text style={styles.loginLinkText}>Already have an account? Log in</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: "center",
+  },
+  backgroundImg: {
+    flex: 1,
+    justifyContent: "flex-end",
+    width: "100%",
+  },
+  loginContainer: {
     position: "relative",
     backgroundColor: "#FFFFFF",
     alignItems: "center",

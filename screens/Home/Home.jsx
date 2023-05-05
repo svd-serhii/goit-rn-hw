@@ -74,19 +74,6 @@ export const Home = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  registerButton: {
-    backgroundColor: "#FF6C00",
-    height: 50,
-    width: 343,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 100,
-    marginTop: 44,
-  },
-  registerButtonText: {
-    color: "#fff",
-    fontWeight: "400",
-  },
   loginLink: {
     marginTop: 16,
     marginBottom: 66,
@@ -124,5 +111,3 @@ const styles = StyleSheet.create({
     marginLeft: 40,
   },
 });
-
-// export const Home = () => {};
