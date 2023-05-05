@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView } from "react-native";
 import React from "react";
-import UserProfile from "../../components/UserProfile/UserProfile";
+import { UserProfile } from "../../components/UserProfile/UserProfile";
 import { PostsList } from "../../components/PostList/PostsList";
 import data from "../../assets/data/posts";
 
@@ -11,7 +11,7 @@ export const PostsScreen = ({ navigation }) => {
         <UserProfile
           avatar={require("../../assets/images/Rectangle22.png")}
           name="Natali Romanova"
-          email="email@example.com"
+          email="email@email.com"
         />
         {data.map((item) => (
           <PostsList

@@ -62,13 +62,15 @@ export const RegistrationScreen = ({ navigation }) => {
     setEmail("");
     setLogin("");
     setPassword("");
+
+    navigation.navigate("Home", { screen: "PostsScreen" });
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground source={require("../../assets/images/bg_mount.jpg")} style={styles.backgroundImg}>
         <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
-          <View style={{ ...styles.LoginContainer, height: 549 }}>
+          <View style={{ ...styles.loginContainer, height: 549 }}>
             <View style={styles.form}>
               <View style={styles.photoContainer}>
                 <Image source={{ uri: image }} style={styles.userPhoto} />

@@ -2,9 +2,9 @@ import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign, SimpleLineIcons, Feather } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
-import PostsScreen from "../PostsScreen/PostsScreen";
-import ProfileScreen from "../ProfileScreen/ProfileScreen";
+import { CreatePostsScreen } from "../CreatePostsScreen/CreatePostsScreen";
+import { PostsScreen } from "../PostsScreen/PostsScreen";
+import { ProfileScreen } from "../ProfileScreen/ProfileScreen";
 
 const BottomTabs = createBottomTabNavigator();
 

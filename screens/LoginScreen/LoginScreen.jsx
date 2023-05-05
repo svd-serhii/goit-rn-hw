@@ -1,4 +1,13 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  ImageBackground,
+} from "react-native";
 import { useState } from "react";
 
 export const LoginScreen = ({ navigation }) => {
@@ -18,6 +27,7 @@ export const LoginScreen = ({ navigation }) => {
       return alert("Fill in all the fields please!");
     }
     console.log(`Email: ${email}, Password: ${password}`);
+    navigation.navigate("Home", { screen: "PostsScreen" });
   };
 
   return (

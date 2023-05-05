@@ -1,9 +1,9 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "../LoginScreen/LoginScreen";
-import RegistrationScreen from "../RegistrationScreen/RegistrationScreen";
-import Home from "../Home/Home";
-import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
-import ProfileScreen from "../ProfileScreen/ProfileScreen";
+import { LoginScreen } from "../LoginScreen/LoginScreen";
+import { RegistrationScreen } from "../RegistrationScreen/RegistrationScreen";
+import { Home } from "../Home/Home";
+import { CreatePostsScreen } from "../CreatePostsScreen/CreatePostsScreen";
+import { ProfileScreen } from "../ProfileScreen/ProfileScreen";
 
 const MainStack = createStackNavigator();
 
