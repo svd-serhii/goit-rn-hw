@@ -16,7 +16,7 @@ export const PostsScreen = ({ navigation }) => {
         {data.map((item) => (
           <PostsList
             key={item.id}
-            img={require("../../assets/data/postsImages/Rectangle23.png")}
+            img={require("../../assets/data/postsImages/Rectangle24.png")}
             text={item.name}
             msgs={0}
             location={item.location}
