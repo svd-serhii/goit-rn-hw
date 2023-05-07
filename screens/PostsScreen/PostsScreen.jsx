@@ -1,28 +1,19 @@
-import { SafeAreaView, ScrollView } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { UserProfile } from "../../components/UserProfile/UserProfile";
+
 import { PostsList } from "../../components/PostList/PostsList";
-import data from "../../assets/data/posts";
+import { CommentsScreen } from "../nestedScreens/CommentsScreen";
+import { MapScreen } from "../nestedScreens/MapScreen";
+import { DefaultPostScreen } from "../nestedScreens/DefaultPostScreen";
+
+const PostsNavigation = createStackNavigator();
 
 export const PostsScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={{ justifyContent: "flex-start", alignItems: "center", overflow: "visible" }}>
-      <ScrollView>
-        <UserProfile
-          avatar={require("../../assets/images/Rectangle22.png")}
-          name="Natali Romanova"
-          email="email@email.com"
-        />
-        {data.map((item) => (
-          <PostsList
-            key={item.id}
-            img={require("../../assets/data/postsImages/Rectangle24.png")}
-            text={item.name}
-            msgs={0}
-            location={item.location}
-          />
-        ))}
-      </ScrollView>
-    </SafeAreaView>
+    <PostsNavigation.Navigator screenOptions={{ headerShown: false }} initialRouteName="DefaultPostScreen">
+      <PostsNavigation.Screen name="DefaultPostScreen" component={DefaultPostScreen} />
+      <PostsNavigation.Screen name="Comments" component={CommentsScreen} />
+      <PostsNavigation.Screen name="Map" component={MapScreen}></PostsNavigation.Screen>
+    </PostsNavigation.Navigator>
   );
 };
